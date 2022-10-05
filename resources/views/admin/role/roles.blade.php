@@ -35,8 +35,8 @@
                                         <td>{{$role->id}}</td>
                                         <td>{{$role->name}}</td>
                                         <td>{{$role->EN_name}}</td>
-                                        <td><button class="btn btn-success" id="roleEdit_{{$role->id}}" type="submit">Редактирование</button></td>
-                                        <td><button class="btn btn-danger" id="roleDelete_{{$role->id}}" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Удаление</button></td>
+                                        <td><a href="{{route('admin.roles.edit', ['role' => $role->id])}}" class="btn btn-primary">Редактирование</a> </td>
+                                        <td><button class="btn btn-danger" id="roleDelete_{{$role->id}}" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Удаление</button></td>
                                     </tr>
                                 @endforeach
                             </form>

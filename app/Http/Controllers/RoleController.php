@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\Role\RoleCreateValidation;
+use App\Http\Requests\Admin\Role\RoleUpdateValidation;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,28 +18,31 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('admin.roles', compact('roles'));
+        return view('admin.role.roles', compact('roles'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->session()->flashInput([]);
+        return view('admin.role.createOrUpdate');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleCreateValidation $request)
     {
-        //
+        $validate = $request->validated();
+        Role::create($validate);
+        return back()->with(['success' => true]);
     }
 
     /**
@@ -55,11 +60,12 @@ class RoleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Request $request, Role $role)
     {
-        //
+        $request->session()->flashInput($role->toArray());
+        return view('admin.role.createOrUpdate', compact('role'));
     }
 
     /**
@@ -67,11 +73,13 @@ class RoleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(RoleUpdateValidation $request, Role $role)
     {
-        //
+        $validate = $request->validated();
+        $role->update($validate);
+        return back()->with(['success' => true]);
     }
 
     /**
@@ -83,6 +91,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->route('admin.roles');
+        return back();
     }
 }

@@ -37,7 +37,8 @@
                                 Администрирование
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('admin.roles')}}">Просмотр ролей</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.roles.create')}}">Добавить роль</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.roles.index')}}">Просмотр ролей</a></li>
                                 <li><a class="dropdown-item" href="">Просмотр пользователей</a></li>
                             </ul>
                         </li>

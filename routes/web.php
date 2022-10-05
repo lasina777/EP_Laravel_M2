@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
     Route::middleware('role:Admin')->group(function (){
         Route::group(['prefix' => '/admin', 'as' => 'admin.'], function (){
-            Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+            Route::resource('/roles', RoleController::class);
         });
     });
 });
