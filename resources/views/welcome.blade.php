@@ -1,3 +1,4 @@
+{{--Корневой шаблон с шапкой--}}
 <!doctype html>
 <html lang="ru">
 <head>
@@ -48,7 +49,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('admin.roles.create')}}">Добавить роль</a></li>
                                 <li><a class="dropdown-item" href="{{route('admin.roles.index')}}">Просмотр ролей</a></li>
-                                <li><a class="dropdown-item" href="">Просмотр пользователей</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.user.index')}}">Все пользователи</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.user.create')}}">Добавить пользователя</a></li>
                             </ul>
                         </li>
                     @endif

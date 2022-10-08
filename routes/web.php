@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -26,12 +27,18 @@ Route::post('/login', [UserController::class,'loginPost']);
 Route::get('/register',[UserController::class, 'register'])->name('register');
 Route::post('/register',[UserController::class, 'registerPost']);
 
+// Промежуточная проверка на авторизацию
 Route::middleware('auth')->group(function (){
 
     Route::get('/logout', [UserController::class,'logout'])->name('logout');
+
+    // Промежуточная проверка на роль: админ
     Route::middleware('role:Admin')->group(function (){
+
+        // Совместное использование артрибутов маршрута
         Route::group(['prefix' => '/admin', 'as' => 'admin.'], function (){
             Route::resource('/roles', RoleController::class);
+            Route::resource('/user', UserController::class);
         });
     });
 

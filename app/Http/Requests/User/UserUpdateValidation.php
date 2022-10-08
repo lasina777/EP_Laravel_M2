@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Role;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleCreateValidation extends FormRequest
+class UserUpdateValidation extends FormRequest
 {
     /**
      * Определяет, авторизирован ли пользователь, для выполнения запроса
@@ -26,8 +26,9 @@ class RoleCreateValidation extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'EN_name' => 'required|unique:roles',
+            'fullName' => 'required',
+            'email' => 'required|email|unique:users,email,'.$this->user->id,
+            'role_id' => 'required|exists:roles,id'
         ];
     }
 }

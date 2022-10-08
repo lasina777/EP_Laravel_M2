@@ -11,6 +11,8 @@ use App\Models\User;
 class RoleController extends Controller
 {
     /**
+     * Вывод всех ролей
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
@@ -22,6 +24,8 @@ class RoleController extends Controller
     }
 
     /**
+     * Вызов шаблона создания роли
+     *
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
@@ -33,6 +37,8 @@ class RoleController extends Controller
     }
 
     /**
+     * Создание роли
+     *
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -46,17 +52,17 @@ class RoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @param Role $role
+     * @return void
      */
     public function show(Role $role)
     {
-
+        //
     }
 
     /**
+     * Вызов шаблона редактирования роли
+     *
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Role  $role
@@ -69,6 +75,8 @@ class RoleController extends Controller
     }
 
     /**
+     * Редактирование роли
+     *
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -83,6 +91,8 @@ class RoleController extends Controller
     }
 
     /**
+     * Удаление роли
+     *
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Role  $role
@@ -91,6 +101,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return back();
+        return back()->with(['delete' => true]);
     }
 }

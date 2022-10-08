@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
+     * Вывод всех постов(по 15 штук)
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
@@ -22,6 +24,8 @@ class PostController extends Controller
     }
 
     /**
+     * Вызов шаблона создания поста
+     *
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
@@ -33,6 +37,8 @@ class PostController extends Controller
     }
 
     /**
+     * Создание поста
+     *
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,6 +58,8 @@ class PostController extends Controller
     }
 
     /**
+     * Вывод одного поста(более расширенный информацией)
+     *
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
@@ -63,6 +71,8 @@ class PostController extends Controller
     }
 
     /**
+     * Вызов шаблона редактирования поста
+     *
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Post  $post
@@ -78,6 +88,8 @@ class PostController extends Controller
     }
 
     /**
+     * Редактирование поста
+     *
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -102,6 +114,8 @@ class PostController extends Controller
     }
 
     /**
+     * Удаление поста
+     *
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Post  $post
@@ -110,6 +124,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with(['success' => true]);
     }
 }

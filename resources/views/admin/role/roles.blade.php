@@ -1,5 +1,6 @@
 @extends('welcome')
 
+{{--Секция для вывода роллей--}}
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,6 +13,13 @@
                         <div class="alert alert-success">У вас нет доступа!</div>
                     @endif
                 @endif
+                    @if(session()->has('delete'))
+                        @if(session()->get('delete'))
+                            <div class="alert alert-success">Роль успешно удалена!</div>
+                        @else
+                            <div class="alert alert-success">У вас нет доступа!</div>
+                        @endif
+                    @endif
 
                 <h2>Роли: </h2>
 
@@ -32,9 +40,9 @@
                                         <td>{{$role->name}}</td>
                                         <td>{{$role->EN_name}}</td>
                                         <td><a href="{{route('admin.roles.edit', ['role' => $role->id])}}" class="btn btn-primary">Редактирование</a> </td>
-                                        <td><button class="btn btn-danger" id="roleDelete_{{$role->id}}" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button">Удаление</button></td>
+                                        <td><button class="btn btn-danger" id="roleDelete_{{$role->id}}" data-bs-toggle="modal" data-bs-target="#roleDelete_{{$role->id}}" type="button">Удаление</button></td>
                                     </tr>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="roleDelete_{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">

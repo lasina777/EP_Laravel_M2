@@ -13,6 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Массив артрибутов
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -23,8 +24,14 @@ class User extends Authenticatable
         'password',
         'photo',
         'birthday',
+        'role_id'
     ];
 
+    /**
+     * Связь с таблицей roles
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function role(){
         return $this->belongsTo(Role::class);
     }

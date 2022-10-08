@@ -1,10 +1,18 @@
 @extends('welcome')
 
+{{--Секция для вывода всех постов--}}
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col"></div>
             <div class="col-10">
+                @if(session()->has('success'))
+                    @if(session()->get('success'))
+                        <div class="alert alert-success">Пост успешно удален!</div>
+                    @else
+                        <div class="alert alert-danger">Вы не имеете доступа к данному посту!</div>
+                    @endif
+                @endif
                 <h1>Все посты</h1>
                 <div class="row">
                     @foreach($posts as $post)
